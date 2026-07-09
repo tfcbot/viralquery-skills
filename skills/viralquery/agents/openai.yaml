@@ -1,7 +1,7 @@
 interface:
   display_name: "ViralQuery"
-  short_description: "Research viral UGC with stored evidence"
-  default_prompt: "Use $viralquery to find high-performing UGC examples for my app and organize the strongest evidence."
+  short_description: "Find top organic viral videos for mobile apps"
+  default_prompt: "Use $viralquery to find the top organic viral videos for my app, return source links, and say if it is not covered yet."
 dependencies:
   tools:
     - type: "mcp"

@@ -2,12 +2,12 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.tfcbot/viralquery",
   "title": "ViralQuery",
-  "description": "Search curated viral UGC, pull analyses, and organize private research collections.",
+  "description": "Find the top organic viral videos for mobile apps. Built for agents; app coverage is growing.",
   "repository": {
     "url": "https://github.com/tfcbot/viralquery-agent",
     "source": "github"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "remotes": [
     {
       "type": "streamable-http",

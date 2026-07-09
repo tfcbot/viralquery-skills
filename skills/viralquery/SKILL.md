@@ -1,37 +1,33 @@
 ---
 name: viralquery
-description: Research high-performing user-generated-content videos with ViralQuery. Use when an agent needs to browse curated viral UGC shelves, search videos by tags, platform, engagement, or collection, pull stored analyses, compare creative patterns, or create and manage private research collections. Prefer ViralQuery MCP tools; do not use for scraping or publishing social posts.
+description: Find the top organic viral videos for a named mobile app with ViralQuery. Use when an agent needs app-specific video examples, performance signals, or source links. ViralQuery is built for agents and its app coverage grows over time. Prefer the protected ViralQuery MCP tools; do not use for scraping or publishing social posts.
 ---
 
 # ViralQuery
 
-Use ViralQuery as an evidence library. Separate stored evidence from your interpretation.
+Use ViralQuery to answer: “What organic videos are going viral for this mobile app?”
 
 ## Workflow
 
 1. Use the ViralQuery MCP tools. If unavailable, tell the user how to connect
    `https://viralquery.com/mcp`; never ask them to paste a key into chat.
-2. For multi-call research, call `getUsage` once. Keep requests within the remaining
-   lookup, search, pull, and manage budgets.
-3. Discover broadly with `listLibraryCollections` and `getLibraryCollection`, or use
-   `listVideos` for filters. Use `lookupVideo` only for a known platform and external ID.
-4. Shortlist before calling `getVideo`. Pull full media and analyses only for candidates that
-   matter. Follow `nextCursor` only until the request is satisfied.
-5. Cite video IDs and URLs. Label stored analysis as evidence and any synthesis as inference.
-   Never invent missing transcripts, metrics, or analysis kinds.
-6. Create or update a private collection only when the user asks to save results: call
-   `upsertCollection`, then `attachVideos`. Omit `visibility` or set it to `private`.
+2. Check the named app in the growing index with `listLibraryCollections`, then use
+   `getLibraryCollection` to retrieve its videos. Use `listVideos` with the returned app tag and
+   `sort: "engagement"` only when the user asks for a narrower search.
+3. Shortlist the returned videos, then call `getVideo` only when more detail is needed. Follow
+   `nextCursor` only until the request is satisfied.
+4. Cite each source URL and video ID. Report only the performance data that ViralQuery returns;
+   clearly label any synthesis as your inference.
+5. If there are no matching results, say that the app may not be covered yet. ViralQuery's app
+   coverage is growing; do not conclude that no organic viral videos exist elsewhere.
+6. Return a focused answer for the requested app rather than broad, unrelated video inspiration.
 
 ## Account and mutation safety
 
-- Treat `subscribe` as a payment action; call it only after explicit user direction.
-- Treat `recover` as an email side effect and `reissue` as key rotation; call either only after
+- Never initiate payment, send account-recovery email, rotate a key, or delete saved data without
   explicit confirmation.
-- Treat `deleteCollection` as destructive; confirm the exact collection before calling it.
-- Never call `upsertVideo`, `putAnalysis`, or publish `visibility:"library"` unless the user
-  explicitly identifies an operator task and the configured key has `catalog:write`.
 - On `subscription_required`, show the returned subscription path.
 - On `rate_limit_exceeded`, report the group and retry time; do not retry in a loop.
 
-Read [`references/operations.md`](references/operations.md) when exact inputs, billing groups,
-authorization rules, or error recovery matter.
+Read [`references/operations.md`](references/operations.md) when exact tool inputs, protected
+connection setup, or error recovery matter.

@@ -2,17 +2,18 @@
 
 # ViralQuery for agents
 
-Search a curated library of viral UGC, pull stored analyses, and organize the strongest evidence
-into private research collections.
+ViralQuery helps agents find the top organic viral videos for a mobile app. Give an agent an app
+name and it can search ViralQuery's growing app coverage, return the strongest matching videos,
+and cite the original sources.
+
+It is built for agents: MCP-first, structured results, and clear source links. It is not limited
+to one video style or content format.
 
 This public repository is the distribution layer for ViralQuery:
 
 - an installable `viralquery` agent skill,
 - remote MCP Registry metadata,
 - copy-paste client configurations.
-
-The hosted implementation derives MCP tools from the same typed contract as the ViralQuery API,
-SDK, and CLI.
 
 ## Connect the remote MCP server
 
@@ -22,8 +23,8 @@ Endpoint:
 https://viralquery.com/mcp
 ```
 
-The endpoint rejects missing or invalid keys before MCP initialization. Every stateless request is
-revalidated against the ViralQuery account gateway.
+A valid ViralQuery API key is required before an MCP session can start. The endpoint rejects
+missing or invalid keys and revalidates each request.
 
 Set your subscriber key locally:
 
@@ -51,17 +52,16 @@ npx skills add tfcbot/viralquery-agent --skill viralquery -g
 
 Then ask:
 
-> Use $viralquery to find strong founder-led UGC patterns for my mobile app. Cite the source
-> videos, separate stored evidence from your inference, and save the final shortlist privately.
+> Use $viralquery to find the top organic viral videos for Duolingo. Return source links and the
+> available performance signals. If Duolingo is not covered yet, say so plainly.
 
 ## What the skill does
 
-- starts broad with curated shelves and filtered search,
-- limits expensive pulls to a shortlist,
-- cites video IDs and source URLs,
-- keeps private collections private,
-- requires confirmation before payment, email, key rotation, or deletion,
-- blocks accidental operator-only library writes.
+- searches for a named mobile app,
+- surfaces its strongest organic viral videos,
+- returns source links, identifiers, and available performance information,
+- makes clear when an app may not be covered yet as the catalog grows,
+- requires confirmation before payment, account recovery, key rotation, or deletion.
 
 ## Access
 
@@ -71,5 +71,5 @@ Read the [MCP setup guide](https://viralquery.com/docs/mcp/install) and
 
 ## Repository boundary
 
-This repository contains public metadata and workflows only. The production MCP server and API are
-hosted by ViralQuery; no implementation secrets or customer data live here.
+This repository contains public metadata and client setup only. The protected production MCP
+server and API are hosted by ViralQuery; no implementation secrets or customer data live here.
