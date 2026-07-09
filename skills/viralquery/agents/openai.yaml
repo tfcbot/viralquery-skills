@@ -1,0 +1,13 @@
+interface:
+  display_name: "ViralQuery"
+  short_description: "Research viral UGC with stored evidence"
+  default_prompt: "Use $viralquery to find high-performing UGC examples for my app and organize the strongest evidence."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "viralquery"
+      description: "ViralQuery remote MCP server"
+      transport: "streamable_http"
+      url: "https://viralquery.com/mcp"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "viralquery": {
+      "url": "https://viralquery.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:VIRALQUERY_API_KEY}"
+      }
+    }
+  }
+}
