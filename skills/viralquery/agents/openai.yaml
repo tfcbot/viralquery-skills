@@ -1,12 +1,13 @@
+version: "1.0.2"
 interface:
   display_name: "ViralQuery"
-  short_description: "Find top organic viral videos for mobile apps"
-  default_prompt: "Use $viralquery to find the top organic viral videos for my app, return source links, and say if it is not covered yet."
+  short_description: "Read-only app video research for agents"
+  default_prompt: "Use $viralquery to check whether my app is covered and return its top organic video results with source links."
 dependencies:
   tools:
     - type: "mcp"
       value: "viralquery"
-      description: "ViralQuery remote MCP server"
+      description: "Protected read-only ViralQuery remote MCP"
       transport: "streamable_http"
       url: "https://viralquery.com/mcp"
 policy:

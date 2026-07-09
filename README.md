@@ -2,14 +2,14 @@
 
 # ViralQuery for agents
 
-ViralQuery helps agents find the top organic viral videos for a mobile app. Give an agent an app
-name and it can search ViralQuery's growing app coverage, return the strongest matching videos,
-and cite the original sources.
+ViralQuery gives agents a protected, read-only way to find the top organic viral videos related
+to a mobile app. Give an agent an app name: it checks ViralQuery's growing app index, retrieves
+the video results for a covered app, and can optionally narrow those results by app tag.
 
-It is built for agents: MCP-first, structured results, and clear source links. It is not limited
-to one video style or content format.
+It is built for agents: a small MCP workflow, structured results, and clear source links. It is
+not limited to one video style or content format.
 
-This public repository is the distribution layer for ViralQuery:
+This repository includes:
 
 - an installable `viralquery` agent skill,
 - remote MCP Registry metadata,
@@ -52,16 +52,18 @@ npx skills add tfcbot/viralquery-agent --skill viralquery -g
 
 Then ask:
 
-> Use $viralquery to find the top organic viral videos for Duolingo. Return source links and the
-> available performance signals. If Duolingo is not covered yet, say so plainly.
+> Use $viralquery to check whether Duolingo is covered. If it is, return its top organic video
+> results with source links. If it is not, say so plainly.
 
 ## What the skill does
 
-- searches for a named mobile app,
-- surfaces its strongest organic viral videos,
-- returns source links, identifiers, and available performance information,
-- makes clear when an app may not be covered yet as the catalog grows,
-- requires confirmation before payment, account recovery, key rotation, or deletion.
+- lists the mobile apps currently covered by ViralQuery,
+- retrieves the top organic video results for a selected covered app,
+- optionally narrows an app's results with `listVideos`,
+- returns source links and the performance information supplied by ViralQuery,
+- makes clear when an app may not be covered yet as coverage grows.
+
+The remote MCP is intentionally read-only.
 
 ## Access
 
@@ -69,7 +71,6 @@ Get a key and compare Starter / Max at [viralquery.com](https://viralquery.com/#
 Read the [MCP setup guide](https://viralquery.com/docs/mcp/install) and
 [API docs](https://viralquery.com/docs).
 
-## Repository boundary
+## Repository contents
 
-This repository contains public metadata and client setup only. The protected production MCP
-server and API are hosted by ViralQuery; no implementation secrets or customer data live here.
+This repository contains public client setup, MCP Registry metadata, and the ViralQuery skill.
