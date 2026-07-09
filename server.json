@@ -2,12 +2,12 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.tfcbot/viralquery",
   "title": "ViralQuery",
-  "description": "Protected, read-only app-video research for agents: list covered apps, retrieve their top organic viral videos, and optionally narrow results.",
+  "description": "Protected, read-only app-video search for agents: covered apps in, top organic videos out.",
   "repository": {
     "url": "https://github.com/tfcbot/viralquery-agent",
     "source": "github"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "remotes": [
     {
       "type": "streamable-http",

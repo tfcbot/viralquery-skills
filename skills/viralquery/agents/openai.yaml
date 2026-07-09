@@ -1,4 +1,4 @@
-version: "1.0.2"
+version: "1.0.3"
 interface:
   display_name: "ViralQuery"
   short_description: "Read-only app video research for agents"
