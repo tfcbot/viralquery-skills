@@ -2,9 +2,9 @@
 
 # ViralQuery for agents
 
-ViralQuery gives agents a protected, read-only way to find the top organic viral videos related
-to a mobile app. Give an agent an app name: it checks ViralQuery's growing app index, retrieves
-the video results for a covered app, and can optionally narrow those results by app tag.
+ViralQuery gives agents a protected, read-only way to retrieve organic viral videos for mobile
+apps. Give an agent an app name: it lists the available apps, selects the stable app ID, and
+retrieves the video collection ViralQuery has for that app.
 
 It is built for agents: a small MCP workflow, structured results, and clear source links. It is
 not limited to one video style or content format.
@@ -52,18 +52,17 @@ npx skills add tfcbot/viralquery-agent --skill viralquery -g
 
 Then ask:
 
-> Use $viralquery to check whether Duolingo is covered. If it is, return its top organic video
-> results with source links. If it is not, say so plainly.
+> Use $viralquery to get the viral videos for Duolingo and include the source links.
 
 ## What the skill does
 
-- lists the mobile apps currently covered by ViralQuery,
-- retrieves the top organic video results for a selected covered app,
-- optionally narrows an app's results with `listVideos`,
-- returns source links and the performance information supplied by ViralQuery,
-- makes clear when an app may not be covered yet as coverage grows.
+- calls `listApps` to discover valid app IDs,
+- calls `getAppVideos` for the selected ID,
+- filters or sorts returned fields locally when needed,
+- returns source links and the post information supplied by ViralQuery,
+- says plainly when the requested app is not in the current library.
 
-The remote MCP is intentionally read-only.
+The remote MCP intentionally exposes only those two read-only tools.
 
 ## Access
 
