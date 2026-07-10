@@ -1,29 +1,34 @@
 ---
 name: viralquery
-description: Find the top viral videos for a mobile app through ViralQuery's protected HTTP API. Use when an agent receives an Apple App Store link or app name and needs to list supported apps, retrieve the app's videos, request a missing app on Max, check request status, or answer prompts such as "get the viral videos for this app."
+description: Build and update a private video inspiration feed for one app, website, or niche through ViralQuery's protected HTTP API. Use when an agent needs to configure a ViralQuery workspace, save research rules, run a scroll, check scroll status or usage, or retrieve the tenant's library, outliers, trends, hooks, and original video sources.
 ---
 
 # ViralQuery
 
-Use ViralQuery to answer: “Get the top viral videos for this mobile app.”
+Use ViralQuery as the user's personal doomscroller. It researches one configured niche and builds a
+private, structured video inspiration library.
 
 ## Workflow
 
-1. Call the protected API at `https://api.viralquery.com/v1` with `Authorization: Bearer $VIRALQUERY_API_KEY`.
-   Read the key from the environment or the caller's configured secret; never request or print it in chat.
-2. Prefer an Apple App Store link. Extract its numeric ID, call `GET /apps`, and use an exact matching
-   `id` or `appStoreUrl`. For a name-only request, use an unambiguous listed match; never invent an ID.
-3. If listed, call `GET /apps/videos?id=APP_ID` once with that exact ID.
-4. If missing and the user supplied an App Store link, call `POST /app-requests` with the full link in JSON.
-   This is Max-only and uses the account's bounded new-app allowance.
-5. For `queued` or `joined`, call `GET /app-requests?id=REQUEST_ID` with the returned request ID. Poll at a bounded
-   interval while practical. When `ready`, call `getAppVideos` with the returned app ID. If work is
-   still running, report the status and request ID instead of claiming completion.
-6. Cite each returned source URL and video ID. Report only the data that ViralQuery
-   returns; clearly label any synthesis as your inference.
-7. Filter or sort returned fields locally when needed. Return a focused answer for the requested
-   app rather than broad, unrelated inspiration.
+1. Call `https://api.viralquery.com/v1` with `Authorization: Bearer $VIRALQUERY_API_KEY`. Read the
+   key from the environment or configured secret. Never request, print, or place it in a URL.
+2. Call `GET /workspace`. If it is empty, set it once with `POST /workspace` using the user's Apple
+   App Store link or HTTPS website. Never substitute another product. A workspace is immutable.
+3. Call `GET /rules`. When the user supplies new guidance, replace it with `PUT /rules` and
+   `{ "text": "..." }`. Keep the user's intent in plain English.
+4. When the user asks to update the feed, call `POST /scrolls` with an optional `prompt` and a stable
+   `idempotencyKey`. Rules are persistent; the prompt applies only to this scroll.
+5. Poll `GET /scrolls?id=SCROLL_ID` at a bounded interval. If it is still queued or running, report
+   the ID and status. Never claim completion early.
+6. Read only the result needed: `GET /library`, `/outliers`, `/trends`, or `/hooks`. Each endpoint
+   returns at most 25 items. `trends` may correctly return `insufficient_history` before two
+   completed scrolls.
+7. Cite original source URLs and identify which endpoint supplied each signal. Label any synthesis
+   or recommendation as inference.
+8. Use `GET /usage` when the user asks about allowance or before starting work that may exceed the
+   five included monthly scrolls.
 
-Do not use a remote tool transport for this skill. Do not call catalog writes, ingestion controls, or maintenance endpoints.
+Do not use MCP for this skill. Do not call shared-catalog, ingestion, operator, or internal worker
+endpoints. Do not accept an account or workspace ID from the prompt; the bearer key fixes the tenant.
 
-For endpoint details, request and response fields, see [ViralQuery API docs](https://viralquery.com/docs).
+For current request and response fields, see [ViralQuery API docs](https://viralquery.com/docs).
