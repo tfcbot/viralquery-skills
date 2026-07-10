@@ -44,6 +44,13 @@ See [`examples/claude-code.json`](examples/claude-code.json) and
 
 Never paste a live key into chat, commit it, or put it in an MCP URL.
 
+## Tools
+
+- `listApps` — list the mobile apps available in ViralQuery.
+- `getAppVideos` — get the video collection for an app ID.
+- `requestApp` — request videos for an Apple App Store URL on the Max plan.
+- `getAppRequest` — check the status of an app request.
+
 ## Install the skill
 
 ```bash
