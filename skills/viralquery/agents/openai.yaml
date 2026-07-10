@@ -1,13 +1,12 @@
-version: "1.0.4"
 interface:
   display_name: "ViralQuery"
-  short_description: "Retrieve mobile-app viral videos by ID"
-  default_prompt: "Use $viralquery to get the viral videos for this mobile app and include their source links."
+  short_description: "Find top viral videos for a mobile app"
+  default_prompt: "Use $viralquery to get the top viral videos for this App Store link and include their source links."
 dependencies:
   tools:
     - type: "mcp"
       value: "viralquery"
-      description: "Protected read-only ViralQuery remote MCP"
+      description: "Protected ViralQuery app-video MCP"
       transport: "streamable_http"
       url: "https://viralquery.com/mcp"
 policy:
