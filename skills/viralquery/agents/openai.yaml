@@ -1,6 +1,4 @@
 interface:
   display_name: "ViralQuery"
-  short_description: "Find top viral videos for a mobile app"
-  default_prompt: "Use $viralquery to get the top viral videos for this App Store link and include their source links."
-policy:
-  allow_implicit_invocation: true
+  short_description: "Build a private video inspiration feed"
+  default_prompt: "Use $viralquery to set my niche, save my rules, run a scroll, and return the strongest video sources."

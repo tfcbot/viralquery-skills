@@ -2,65 +2,8 @@
 
 # ViralQuery for agents
 
-ViralQuery gives agents a protected way to retrieve the top viral videos for mobile apps. Give an
-agent an Apple App Store link: it finds the exact app, requests it on Max if needed, and retrieves
-the video collection ViralQuery has for that app.
-
-It is built for agents: an API-first skill, structured results, and clear source links. It is not
-limited to one video style or content format.
-
-This repository includes:
-
-- an installable `viralquery` agent skill,
-- optional remote MCP Registry metadata,
-- copy-paste client configurations.
-
-## Connect the remote MCP server
-
-Endpoint:
-
-```text
-https://viralquery.com/mcp
-```
-
-A valid ViralQuery API key is required before an MCP session can start. The endpoint rejects
-missing or invalid keys and revalidates each request.
-
-Set your subscriber key locally:
-
-```bash
-export VIRALQUERY_API_KEY=sk_viralquery_...
-```
-
-Then add the server to Claude Code:
-
-```bash
-claude mcp add --transport http --scope user viralquery https://viralquery.com/mcp \
-  --header "Authorization: Bearer ${VIRALQUERY_API_KEY}"
-```
-
-See [`examples/claude-code.json`](examples/claude-code.json) and
-[`examples/cursor.json`](examples/cursor.json) for project configuration.
-
-Never paste a live key into chat, commit it, or put it in an MCP URL.
-
-## Tools
-
-### `listApps`
-
-List the mobile apps available in ViralQuery.
-
-### `getAppVideos`
-
-Get the video collection for an app ID.
-
-### `requestApp`
-
-Request videos for an Apple App Store URL on the Max plan.
-
-### `getAppRequest`
-
-Check the status of an app request.
+ViralQuery is a private video inspiration feed for one app, website, or niche. An agent saves simple
+research rules, runs bounded scrolls, and reads structured library, outlier, trend, and hook data.
 
 ## Install the skill
 
@@ -70,27 +13,31 @@ npx skills add https://viralquery.com/skills
 
 Then ask:
 
-> Use $viralquery to get the top viral videos for this App Store link and include the source links.
+> Use $viralquery to set my app as the workspace, look for organic demos with strong visual hooks,
+> and run my first scroll.
 
-## What the skill does
+The skill uses the protected ViralQuery HTTP API directly. It does not require MCP.
 
-- calls `listApps` to discover valid app IDs and App Store URLs,
-- calls `getAppVideos` for an available app,
-- calls `requestApp` on Max when an App Store link is missing,
-- calls `getAppRequest` until the app is ready,
-- filters or sorts returned fields locally when needed,
-- returns source links and the post information supplied by ViralQuery,
-- reports a clear status when a new app is still being prepared.
+## Optional remote MCP
 
-The skill uses the protected ViralQuery HTTP API directly. The optional remote MCP exposes the same
-bounded app workflow and no catalog write, ingestion, or maintenance controls.
+Agents that support remote MCP can connect to `https://viralquery.com/mcp` with a ViralQuery API
+key in the bearer header. The MCP server exposes the same tenant workspace, rules, scroll, and
+bounded result workflow.
 
-## Access
+```bash
+claude mcp add --transport http --scope user viralquery https://viralquery.com/mcp \
+  --header "Authorization: Bearer ${VIRALQUERY_API_KEY}"
+```
 
-Get a key and compare Starter / Max at [viralquery.com](https://viralquery.com/#pricing).
-Read the [MCP setup guide](https://viralquery.com/docs/mcp/install) and
-[API docs](https://viralquery.com/docs).
+Never paste a live key into chat, commit it, or put it in an MCP URL.
 
-## Repository contents
+## Public tools
 
-This repository contains public client setup, MCP Registry metadata, and the ViralQuery skill.
+- `getWorkspace` / `setWorkspace`
+- `getRules` / `putRules`
+- `createScroll` / `getScroll`
+- `getLibrary` / `getOutliers` / `getTrends` / `getHooks`
+
+Get a key at [viralquery.com](https://viralquery.com/#pricing). Read the
+[quickstart](https://viralquery.com/docs/quickstart), [MCP guide](https://viralquery.com/docs/mcp/install),
+and [API docs](https://viralquery.com/docs).
