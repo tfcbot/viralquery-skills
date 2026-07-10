@@ -26,4 +26,4 @@ Use ViralQuery to answer: “Get the top viral videos for this mobile app.”
 
 Do not use a remote tool transport for this skill. Do not call catalog writes, ingestion controls, or maintenance endpoints.
 
-Read [`references/operations.md`](references/operations.md) when exact HTTP requests or response fields matter.
+For endpoint details, request and response fields, see [ViralQuery API docs](https://viralquery.com/docs).
