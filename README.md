@@ -6,13 +6,13 @@ ViralQuery gives agents a protected way to retrieve the top viral videos for mob
 agent an Apple App Store link: it finds the exact app, requests it on Max if needed, and retrieves
 the video collection ViralQuery has for that app.
 
-It is built for agents: a small MCP workflow, structured results, and clear source links. It is
-not limited to one video style or content format.
+It is built for agents: an API-first skill, structured results, and clear source links. It is not
+limited to one video style or content format.
 
 This repository includes:
 
 - an installable `viralquery` agent skill,
-- remote MCP Registry metadata,
+- optional remote MCP Registry metadata,
 - copy-paste client configurations.
 
 ## Connect the remote MCP server
@@ -64,8 +64,8 @@ Then ask:
 - returns source links and the post information supplied by ViralQuery,
 - reports a clear status when a new app is still being prepared.
 
-The remote MCP exposes only those four bounded app tools. It exposes no catalog write, ingestion,
-or maintenance controls.
+The skill uses the protected ViralQuery HTTP API directly. The optional remote MCP exposes the same
+bounded app workflow and no catalog write, ingestion, or maintenance controls.
 
 ## Access
 
