@@ -4,7 +4,7 @@
   "title": "ViralQuery",
   "description": "Protected viral video retrieval and missing-app requests for mobile apps, built for agents.",
   "repository": {
-    "url": "https://github.com/tfcbot/viralquery-agent",
+    "url": "https://github.com/tfcbot/viralquery-skills",
     "source": "github"
   },
   "version": "1.1.0",

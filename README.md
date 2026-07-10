@@ -47,7 +47,7 @@ Never paste a live key into chat, commit it, or put it in an MCP URL.
 ## Install the skill
 
 ```bash
-npx skills add tfcbot/viralquery-agent --skill viralquery -g
+npx skills add https://viralquery.com/skills
 ```
 
 Then ask:
