@@ -14,10 +14,19 @@ npx skills add https://viralquery.com/skills
 
 Then ask:
 
-> Use $viralquery to set my app as the workspace, look for organic demos with strong visual hooks,
-> and run my first scroll.
+> Use $viralquery to verify my setup, set my app as the research workspace, look for organic demos
+> with strong visual hooks, and run my first scroll.
 
 The skill uses the protected ViralQuery HTTP API directly. It does not require MCP.
+
+Configure `VIRALQUERY_API_KEY` in the agent's environment or run:
+
+```bash
+npx viralquery auth --url https://api.viralquery.com --key "$VIRALQUERY_API_KEY"
+```
+
+Get a key through [viralquery.com/#pricing](https://viralquery.com/#pricing). The skill verifies the
+configured key with a protected request before it starts a scroll.
 
 ## Optional remote MCP
 
