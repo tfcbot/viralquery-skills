@@ -1,4 +1,4 @@
 interface:
   display_name: "ViralQuery"
-  short_description: "Build a private video research feed"
-  default_prompt: "Use $viralquery to set my research brief, save my rules, run a bounded scroll, and return the strongest source videos and signals."
+  short_description: "Set up and run private video research"
+  default_prompt: "Use $viralquery to verify my API setup, configure my research brief and rules, run a scroll, and return the strongest source videos and signals."
