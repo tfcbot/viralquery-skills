@@ -2,12 +2,12 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.tfcbot/viralquery",
   "title": "ViralQuery",
-  "description": "Protected tenant workspaces, research scrolls, and private video inspiration feeds built for agents.",
+  "description": "Protected tenant research briefs, bounded scrolls, and private video inspiration feeds built for agents.",
   "repository": {
     "url": "https://github.com/tfcbot/viralquery-skills",
     "source": "github"
   },
-  "version": "2.0.0",
+  "version": "2.1.0",
   "remotes": [
     {
       "type": "streamable-http",

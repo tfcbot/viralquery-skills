@@ -2,8 +2,9 @@
 
 # ViralQuery for agents
 
-ViralQuery is a private video inspiration feed for one app, website, or niche. An agent saves simple
-research rules, runs bounded scrolls, and reads structured library, outlier, trend, and hook data.
+ViralQuery is a private video inspiration feed for one app, website, or niche. An agent saves a
+research brief and plain-English rules, runs bounded scrolls, and reads structured library,
+outlier, trend, and hook data.
 
 ## Install the skill
 
@@ -31,12 +32,13 @@ claude mcp add --transport http --scope user viralquery https://viralquery.com/m
 
 Never paste a live key into chat, commit it, or put it in an MCP URL.
 
-## Public tools
+## Current API reference
 
-- `getWorkspace` / `setWorkspace`
-- `getRules` / `putRules`
-- `createScroll` / `getScroll`
-- `getLibrary` / `getOutliers` / `getTrends` / `getHooks`
+The skill intentionally does not copy the full API contract. Read the canonical machine-readable
+index at [viralquery.com/llms.txt](https://viralquery.com/llms.txt) before making requests. It
+links to the current workspace, rules, scroll, usage, and result-operation documentation, including
+request fields, limits, response shapes, and errors. This keeps the skill and marketplace listings
+stable as the API evolves.
 
 Get a key at [viralquery.com](https://viralquery.com/#pricing). Read the
 [quickstart](https://viralquery.com/docs/quickstart), [MCP guide](https://viralquery.com/docs/mcp/install),
