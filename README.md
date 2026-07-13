@@ -26,7 +26,7 @@ The skill uses the protected ViralQuery HTTP API directly. It does not require M
 Configure `VIRALQUERY_API_KEY` in the agent's environment or run:
 
 ```bash
-npx viralquery auth --url https://api.viralquery.com
+viralquery auth --url https://api.viralquery.com
 ```
 
 Keep `VIRALQUERY_API_KEY` in the agent secret store or environment rather than command arguments.
