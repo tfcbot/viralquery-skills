@@ -9,12 +9,13 @@ outlier, trend, and hook data.
 ## Install the skill
 
 ```bash
-npx --yes skills@1.5.17 add https://github.com/tfcbot/viralquery-skills/tree/v2.2.0/skills/viralquery --skill viralquery --copy
+npx --yes skills@1.5.17 add https://github.com/tfcbot/viralquery-skills/tree/083f6dac6b4cc2adb689aef99da55535bb4903b7/skills/viralquery --skill viralquery --copy
 ```
 
-This pins both the installer CLI and the reviewed `v2.2.0` skill release. The tag does not
-auto-update: review the release diff, then replace `v2.2.0` deliberately when adopting a newer
-version. `--copy` leaves the agent with an independent copy instead of a mutable cache symlink.
+This pins both the installer CLI and the exact reviewed skill commit published with `v2.2.0`.
+Commit identities cannot move: review the next release diff, then replace the 40-character commit
+deliberately when upgrading. `--copy` leaves the agent with an independent copy instead of a
+mutable cache symlink.
 
 Then ask:
 
