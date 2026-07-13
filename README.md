@@ -23,13 +23,14 @@ Then ask:
 
 The skill uses the protected ViralQuery HTTP API directly. It does not require MCP.
 
-Configure `VIRALQUERY_API_KEY` in the agent's environment or run:
+Configure `VIRALQUERY_API_KEY` in the agent's secret store or environment. If you also use the
+ViralQuery CLI, point it at the official API once:
 
 ```bash
 viralquery auth --url https://api.viralquery.com
 ```
 
-Keep `VIRALQUERY_API_KEY` in the agent secret store or environment rather than command arguments.
+Keep `VIRALQUERY_API_KEY` out of command arguments and shell history.
 Custom deployments require an exact HTTPS origin plus explicit
 `--allow-custom-origin`; authenticated requests never follow redirects.
 

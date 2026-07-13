@@ -17,7 +17,15 @@ jobs:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Validate metadata JSON
-        run: python3 -m json.tool server.json >/dev/null
+        run: |
+          python3 -m json.tool server.json >/dev/null
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            SERVER_VERSION="$(python3 -c 'import json; print(json.load(open("server.json"))["version"])')"
+            test "$GITHUB_REF_NAME" = "v$SERVER_VERSION" || {
+              echo "::error::Tag $GITHUB_REF_NAME does not match server.json version $SERVER_VERSION"
+              exit 1
+            }
+          fi
 
       - name: Validate the published skill
         run: npx --yes skills@1.5.17 add . --list
