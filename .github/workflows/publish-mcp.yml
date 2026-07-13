@@ -1,7 +1,6 @@
 name: Publish MCP metadata
 
 on:
-  workflow_dispatch:
   push:
     tags:
       - "v*"
@@ -19,13 +18,15 @@ jobs:
       - name: Validate metadata JSON
         run: |
           python3 -m json.tool server.json >/dev/null
-          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
-            SERVER_VERSION="$(python3 -c 'import json; print(json.load(open("server.json"))["version"])')"
-            test "$GITHUB_REF_NAME" = "v$SERVER_VERSION" || {
-              echo "::error::Tag $GITHUB_REF_NAME does not match server.json version $SERVER_VERSION"
-              exit 1
-            }
-          fi
+          test "$GITHUB_REF_TYPE" = "tag" || {
+            echo "::error::Publishing requires an immutable tag ref"
+            exit 1
+          }
+          SERVER_VERSION="$(python3 -c 'import json; print(json.load(open("server.json"))["version"])')"
+          test "$GITHUB_REF_NAME" = "v$SERVER_VERSION" || {
+            echo "::error::Tag $GITHUB_REF_NAME does not match server.json version $SERVER_VERSION"
+            exit 1
+          }
 
       - name: Validate the published skill
         run: npx --yes skills@1.5.17 add . --list
