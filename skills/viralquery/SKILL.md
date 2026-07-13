@@ -46,19 +46,21 @@ setup guides live at [viralquery.com/docs](https://viralquery.com/docs).
 3. If no key is configured, tell the user to open
    [viralquery.com/#pricing](https://viralquery.com/#pricing), choose a plan, finish checkout, and
    save the key shown once. Never ask the user to paste the key into chat.
-4. Configure either of these supported forms:
+4. Have the user's secret manager inject `VIRALQUERY_API_KEY` into the agent process. For an
+   interactive shell, use ViralQuery's documented non-echo `read` flow; never type the literal key
+   into a command. Record the official origin separately when CLI config is useful:
 
    ```bash
-   export VIRALQUERY_API_KEY=sk_viralquery_...
    viralquery auth --url https://api.viralquery.com
    ```
 
-   Prefer the environment secret directly so the key does not enter command arguments or durable
-   config. The CLI command above stores only the official API URL in `~/.viralquery/config.json`.
+   The CLI command above stores only the official API URL in `~/.viralquery/config.json`; it does
+   not print or store the injected environment secret.
 5. Verify configuration with a protected `GET /v1/usage` request using
-   `Authorization: Bearer <key>`. A `200` response means the configuration works. Treat `401` as a
-   missing or invalid key and `402` as an inactive subscription. Do not use public `/health` to
-   validate credentials.
+   `Authorization: Bearer <key>`. A `200` response means the key is valid; inspect `active` and
+   `status` for subscription state. Treat `401` as a missing or invalid key. Plan-gated research
+   calls return `402 subscription_required` when the subscription is inactive. Do not use public
+   `/health` to validate credentials.
 
 ## Run a scroll
 
